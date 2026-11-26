@@ -1,0 +1,32 @@
+/* Generates README screenshots from the built-in sample data. */
+const puppeteer = require('puppeteer-core');
+const BASE = process.env.BASE || 'http://localhost:8137/';
+const OUT = process.env.OUT || 'docs';
+(async () => {
+  const b = await puppeteer.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: 'new', args: ['--no-sandbox'] });
+  const p = await b.newPage();
+  await p.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
+  const w = ms => new Promise(r => setTimeout(r, ms));
+  await p.goto(BASE, { waitUntil: 'networkidle0' });
+  await p.evaluate(() => { localStorage.clear(); localStorage.setItem('daman.settings.v1', JSON.stringify({ lang: 'en', currency: 'EGP', alertDays: 30 })); });
+  await p.reload({ waitUntil: 'networkidle0' });
+  await p.screenshot({ path: OUT + '/empty.png' });
+  await p.click('#emptyDemo');
+  await p.waitForFunction(() => document.querySelectorAll('.card .mini img').length >= 6); await w(3800);
+  await p.screenshot({ path: OUT + '/home-en.png' });
+  await p.evaluate(() => [...document.querySelectorAll('.card')].find(c => /Samsung/.test(c.textContent)).click());
+  await p.waitForSelector('#receiptLink img'); await w(400);
+  await p.screenshot({ path: OUT + '/detail-en.png' });
+  await p.keyboard.press('Escape');
+  await p.click('#addBtn'); await w(300);
+  await p.type('#fName', 'Philips air fryer'); await p.type('#fStore', 'Carrefour'); await p.type('#fPrice', '3400');
+  await p.screenshot({ path: OUT + '/form-en.png' });
+  await p.keyboard.press('Escape');
+  await p.keyboard.press('Escape');
+  await p.evaluate(() => { localStorage.clear(); localStorage.setItem('daman.settings.v1', JSON.stringify({ lang: 'ar', currency: 'EGP', alertDays: 30 })); indexedDB.deleteDatabase('daman'); });
+  await p.reload({ waitUntil: 'networkidle0' });
+  await p.click('#emptyDemo');
+  await p.waitForFunction(() => document.querySelectorAll('.card .mini img').length >= 6); await w(3800);
+  await p.screenshot({ path: OUT + '/home-ar.png' });
+  await b.close();
+})();
