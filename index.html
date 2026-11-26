@@ -34,7 +34,7 @@
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <input id="q" type="search" autocomplete="off" data-ph="search">
       </label>
-      <div class="filters" id="filters" role="tablist"></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter"></div>
       <label class="sort"><span data-i="s_by"></span>
         <select id="sort"></select>
       </label>
@@ -109,6 +109,7 @@
       <button type="button" class="btn ghost" id="sampleBtn" data-i="set_sample"></button>
       <button type="button" class="btn danger" id="clearBtn" data-i="set_clear"></button>
     </div>
+    <p class="hint small" id="storageInfo"></p>
     <p class="hint small" data-i="set_about"></p>
   </div>
 </dialog>

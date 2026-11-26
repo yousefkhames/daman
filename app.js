@@ -138,7 +138,7 @@
     var so = $('sort'); so.textContent = '';
     [['expiry', 's_expiry'], ['purchase', 's_purchase'], ['name', 's_name'], ['price', 's_price']].forEach(function (p) { so.appendChild(h('option', { value: p[0], text: t(p[1]) })); });
     so.value = ui.sort;
-    renderNotifyState();
+    renderNotifyState(); renderStorage();
     $('addBtn').setAttribute('title', t('kb_hint'));
   }
 
@@ -158,7 +158,7 @@
     var fl = $('filters'); fl.textContent = '';
     [['all', 'f_all'], ['active', 'f_active'], ['soon', 'f_soon'], ['expired', 'f_expired']].forEach(function (f) {
       var n = f[0] === 'all' ? sm.total : f[0] === 'active' ? sm.active : f[0] === 'soon' ? sm.soon : sm.expired;
-      fl.appendChild(h('button', { type: 'button', role: 'tab', class: 'tab' + (ui.filter === f[0] ? ' on' : ''), 'aria-selected': ui.filter === f[0] ? 'true' : 'false', 'data-filter': f[0], onclick: function () { ui.filter = f[0]; render(); } }, [t(f[1]), h('small', { text: String(n) })]));
+      fl.appendChild(h('button', { type: 'button', class: 'tab' + (ui.filter === f[0] ? ' on' : ''), 'aria-pressed': ui.filter === f[0] ? 'true' : 'false', 'data-filter': f[0], onclick: function () { ui.filter = f[0]; render(); } }, [t(f[1]), h('small', { text: String(n) })]));
     });
 
     var list = $('list'); list.textContent = '';
@@ -459,6 +459,14 @@
     el.textContent = t('set_notify_state_' + Notification.permission);
     b.hidden = Notification.permission !== 'default';
   }
+  function renderStorage() {
+    var el = $('storageInfo');
+    if (!navigator.storage || !navigator.storage.estimate) { el.textContent = ''; return; }
+    navigator.storage.estimate().then(function (e) {
+      var mb = (e.usage || 0) / 1048576;
+      el.textContent = t('storage_used', mb < 0.1 ? '< 0.1' : mb.toFixed(1)) + (e.quota ? ' / ' + Math.round(e.quota / 1048576) + ' MB' : '');
+    }, function () { el.textContent = ''; });
+  }
   function notifyDue() {
     if (!('Notification' in window) || Notification.permission !== 'granted') return;
     var seen = load(LS_NOTIFIED, {}), td = today(), changed = false;
@@ -477,7 +485,7 @@
   function init() {
     applyLang();
     $('langBtn').onclick = function () { setLang(settings.lang === 'ar' ? 'en' : 'ar'); };
-    $('settingsBtn').onclick = function () { $('settingsDlg').showModal(); };
+    $('settingsBtn').onclick = function () { renderStorage(); $('settingsDlg').showModal(); };
     $('addBtn').onclick = function () { openForm(); };
     $('q').oninput = function (e) { ui.query = e.target.value; render(); };
     $('sort').onchange = function (e) { ui.sort = e.target.value; render(); };
@@ -512,6 +520,7 @@
     });
     document.addEventListener('visibilitychange', function () { if (!document.hidden) { render(); notifyDue(); } });
     render(); notifyDue();
+    if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
     if ('serviceWorker' in navigator && /^https?:/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(function () {});
   }
   document.addEventListener('DOMContentLoaded', init);

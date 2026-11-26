@@ -131,7 +131,10 @@ const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAF0lEQVR
   ok(await page.$eval('#alerts', e => e.hidden), 'dismissal persists');
 
   console.log('backup, erase, restore');
-  await click('#settingsBtn'); await click('#exportBtn'); await wait(500);
+  await click('#settingsBtn');
+  await page.waitForFunction(() => /MB|ميجا/.test(document.getElementById('storageInfo').textContent));
+  ok(true, 'settings shows browser storage use');
+  await click('#exportBtn'); await wait(500);
   const backup = await page.evaluate(() => window.__dl.pop());
   const bj = JSON.parse(backup);
   ok(bj.app === 'daman' && bj.items.length === 7 && Object.keys(bj.photos).length === 7, 'backup JSON has 7 items and 7 photos');
