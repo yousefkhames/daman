@@ -1,0 +1,12 @@
+{
+  "name": "daman",
+  "version": "1.0.0",
+  "description": "Warranty and receipt vault. Static, client-side, Arabic and English.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tests/core.test.js",
+    "e2e": "./run_e2e.sh",
+    "shots": "node tests/shots.js"
+  },
+  "devDependencies": { "puppeteer-core": "^24.0.0" }
+}
