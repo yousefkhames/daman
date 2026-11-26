@@ -4,7 +4,7 @@
   "description": "Warranty and receipt vault. Static, client-side, Arabic and English.",
   "license": "MIT",
   "scripts": {
-    "test": "node --test tests/core.test.js",
+    "test": "node --test tests/core.test.js tests/i18n.test.js",
     "e2e": "./run_e2e.sh",
     "shots": "node tests/shots.js"
   },

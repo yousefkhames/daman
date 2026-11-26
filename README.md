@@ -46,8 +46,8 @@ python3 -m http.server 8000   # or any static server, then open http://localhost
 ## Tests
 
 ```sh
-npm test                       # 13 unit tests for the date, status, search, CSV, ICS and backup logic (Node 18+)
-npm i && npm run e2e           # real Chrome click-through, 50 checks (needs Chrome, set CHROME=/path if not in /usr/bin)
+npm test                       # 19 unit tests: dates, status, search, CSV, ICS, backup, and matching English/Arabic strings (Node 18+)
+npm i && npm run e2e           # real Chrome click-through, 51 checks (needs Chrome, set CHROME=/path if not in /usr/bin)
 ```
 
 The browser test creates, edits, deletes, searches, switches to Arabic, uploads a photo, downloads and parses the `.ics`, exports and restores a backup, reloads to check persistence, and goes offline.
