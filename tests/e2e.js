@@ -33,6 +33,7 @@ const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAF0lEQVR
 
   console.log('empty state');
   ok(await count('.card') === 0, 'no cards at first');
+  ok(await page.evaluate(() => getComputedStyle(document.getElementById('stats')).display === 'none' && getComputedStyle(document.getElementById('toolbar')).display === 'none'), 'stats and toolbar hidden while empty');
   ok((await text('#empty h2')).length > 3, 'empty state shown');
   ok(await page.$eval('html', e => e.dir) === 'ltr', 'English is LTR');
 

@@ -8,5 +8,5 @@
     "e2e": "./run_e2e.sh",
     "shots": "node tests/shots.js"
   },
-  "devDependencies": { "puppeteer-core": "^24.0.0" }
+  "devDependencies": { "puppeteer-core": "^25.19.0" }
 }
