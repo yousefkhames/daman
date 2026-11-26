@@ -15,6 +15,15 @@ Arabic and English, right-to-left ready, mobile first.</p>
 <img src="docs/form-en.png" width="23%" alt="Add receipt form with live warranty end date">
 </p>
 
+## Screenshots
+
+Captured from the live site (https://yousefkhames.github.io/daman/).
+
+<p>
+  <img src="docs/screenshots/live-desktop.png" alt="daman desktop view" width="640">
+  <img src="docs/screenshots/live-mobile.png" alt="daman mobile view" width="200">
+</p>
+
 ## The problem
 
 The washing machine breaks in month 11, the receipt is somewhere in a drawer, and nobody remembers if the warranty was 12 or 24 months. Daman keeps the receipt photo, the purchase date and the warranty length together, counts the days for you, and nags you while a claim is still possible.
