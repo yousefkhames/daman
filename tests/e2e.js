@@ -70,7 +70,7 @@ const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAF0lEQVR
   await click('#langBtn');
   ok(await page.$eval('html', e => e.dir) === 'rtl' && await page.$eval('html', e => e.lang) === 'ar', 'Arabic switches to RTL');
   ok(/[\u0600-\u06FF]/.test(await text('.brand-text b')), 'brand shows Arabic name');
-  ok(/باقي|انتهى|بدون/.test(await text('.card')), 'card status text is Arabic');
+  ok(/يوم|ينتهي|مغطّى/.test(await text('.card')), 'card status text is Arabic');
   ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), 'no horizontal overflow in RTL');
   await click('#langBtn');
   ok(await page.$eval('html', e => e.dir) === 'ltr', 'back to LTR');
