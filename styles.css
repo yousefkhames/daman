@@ -22,7 +22,7 @@ button{cursor:pointer}
 .brand img{border-radius:12px;box-shadow:var(--shadow);flex:none}
 .brand-text{display:flex;flex-direction:column;min-width:0}
 .brand-text b{font-size:1.45rem;letter-spacing:.01em;line-height:1.1}
-.brand-text small{color:var(--ink2);font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-text small{color:var(--ink2);font-size:.78rem;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .top-actions{display:flex;gap:8px;align-items:center}
 .chip-btn,.icon-btn{border:1.5px solid var(--ink);background:transparent;border-radius:999px;height:40px;min-width:40px;padding:0 14px;display:grid;place-items:center;font-weight:600;font-size:.9rem}
 .icon-btn{padding:0;font-size:1.5rem;line-height:1}

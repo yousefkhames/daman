@@ -29,7 +29,7 @@ window.DAMAN_I18N = {
     confirm_delete: 'Delete this receipt and its photo from this browser? This cannot be undone.', yes_delete: 'Delete', 
     claim_title: 'Warranty claim sheet', claim_hint: 'Bring this with the receipt to the store or service center.',
     cal_label: 'Warranty ends',
-    set_title: 'Settings', set_lang: 'Language', set_currency: 'Currency', set_default_alert: 'Default warning (days)',
+    set_title: 'Settings', set_lang: 'Language', set_currency: 'Currency', set_default_alert: 'Default alert before expiry (days)',
     set_notify: 'Browser notifications', set_notify_on: 'Turn on', set_notify_state_granted: 'On. Works while Daman is open in a tab.', set_notify_state_denied: 'Blocked in your browser settings.', set_notify_state_default: 'Off.', set_notify_unsupported: 'Not supported in this browser.',
     set_data: 'Your data', set_data_hint: 'Everything lives in this browser only. Export a backup now and then, especially before clearing browser data.',
     set_export: 'Download backup (JSON)', set_import: 'Restore backup', set_csv: 'Export list (CSV)', set_sample: 'Load sample data', set_clear: 'Erase everything',
