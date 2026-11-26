@@ -464,7 +464,7 @@
     if (!navigator.storage || !navigator.storage.estimate) { el.textContent = ''; return; }
     navigator.storage.estimate().then(function (e) {
       var mb = (e.usage || 0) / 1048576;
-      el.textContent = t('storage_used', mb < 0.1 ? '< 0.1' : mb.toFixed(1)) + (e.quota ? ' / ' + Math.round(e.quota / 1048576) + ' MB' : '');
+      el.textContent = t('storage_used', mb < 0.1 ? '0.1' : mb.toFixed(1), e.quota ? Math.round(e.quota / 1048576) : 0);
     }, function () { el.textContent = ''; });
   }
   function notifyDue() {

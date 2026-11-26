@@ -40,7 +40,7 @@ window.DAMAN_I18N = {
     confirm_clear: 'Erase all items and photos from this browser?', saved: 'Saved.', deleted: 'Deleted.',
     storage_full: 'Browser storage is full. Export a backup and free some space.',
     photo_fail: 'Could not read that image.',
-    sample_tag: 'Sample', storage_used: function (mb) { return 'Browser storage used: ' + mb + ' MB'; },
+    sample_tag: 'Sample', storage_used: function (mb, q) { return 'Browser storage used: ' + mb + ' MB' + (q ? ' of about ' + q + ' MB' : '') + '.'; },
     kb_hint: 'Press N to add'
   },
   ar: {
@@ -86,7 +86,7 @@ window.DAMAN_I18N = {
     confirm_clear: 'مسح كل المنتجات والصور من هذا المتصفح؟', saved: 'تم الحفظ.', deleted: 'تم الحذف.',
     storage_full: 'مساحة المتصفح ممتلئة. نزّل نسخة احتياطية وحرّر مساحة.',
     photo_fail: 'تعذّر قراءة الصورة.',
-    sample_tag: 'تجريبي', storage_used: function (mb) { return 'مساحة المتصفح المستخدمة: ' + mb + ' ميجابايت'; },
+    sample_tag: 'تجريبي', storage_used: function (mb, q) { return 'مساحة المتصفح المستخدمة: ' + mb + ' ميجابايت' + (q ? ' من حوالي ' + q + ' ميجابايت' : '') + '.'; },
     kb_hint: 'اضغط N للإضافة'
   }
 };

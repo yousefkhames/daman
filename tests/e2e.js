@@ -173,6 +173,16 @@ const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAF0lEQVR
   await wait(200);
   ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), 'no horizontal overflow on desktop');
 
+  console.log('offline');
+  await page.evaluate(() => navigator.serviceWorker.ready.then(() => 1));
+  await page.reload({ waitUntil: 'networkidle0' });
+  ok(await page.evaluate(() => !!navigator.serviceWorker.controller), 'service worker controls the page');
+  await page.setOfflineMode(true);
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.waitForSelector('.card');
+  ok(await count('.card') === 6, 'app and data load with the network off');
+  await page.setOfflineMode(false);
+
   ok(errors.length === 0, 'no console or page errors' + (errors.length ? ': ' + errors.join(' | ') : ''));
   await browser.close();
   console.log('\nE2E passed: ' + passed + ' checks');

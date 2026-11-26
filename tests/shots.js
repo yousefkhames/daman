@@ -28,5 +28,7 @@ const OUT = process.env.OUT || 'docs';
   await p.click('#emptyDemo');
   await p.waitForFunction(() => document.querySelectorAll('.card .mini img').length >= 6); await w(3800);
   await p.screenshot({ path: OUT + '/home-ar.png' });
+  await p.click('#settingsBtn'); await w(400);
+  await p.screenshot({ path: OUT + '/settings-ar.png' });
   await b.close();
 })();
